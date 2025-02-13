@@ -1,0 +1,30 @@
+[
+{
+    "nama" : "Sandhika",
+    "umur" : 32,
+    "nim" : "04300430",
+    "lulus" : true,
+    "hobby" : [
+        "coding",
+        "gaming"
+    ],
+    "pembimbing" : {
+        "pembimbing1" : "Doddy Ferdiansyah",
+        "pembimbing2" : "Erik Doang"
+    }
+},
+{
+    "nama" : "Sandhika",
+    "umur" : 32,
+    "nim" : "04300430",
+    "lulus" : true,
+    "hobby" : [
+        "coding",
+        "gaming"
+    ],
+    "pembimbing" : {
+        "pembimbing1" : "Doddy Ferdiansyah",
+        "pembimbing2" : "Erik Doang"
+    }
+}
+]
