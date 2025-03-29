@@ -31,6 +31,11 @@ $('.nav-link').on('click', function (){
     $('h1').html(kategori);  //karena kita hanya punya 1 <h1>
 
     if (kategori == 'All Menu') {
+        
+        let content = ''; //tambahan sendiri
+        $('#daftar-menu').html(content);
+        //agar saat kembali ke all menu, dihapus dulu semua kontennya.
+
         tampilkanSemuaMenu();
         return;
         // kita return (tanpa true/false) supaya keluar dari fungsi-nya
