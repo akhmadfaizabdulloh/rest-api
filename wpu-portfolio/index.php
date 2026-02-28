@@ -1,15 +1,26 @@
 <?php
-$curl = curl_init();
 
-curl_setopt($curl, CURLOPT_URL, 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCZ97Wpe3uz9_xjEXEsv2zIw&key=AIzaSyA');
+function get_CURL($url)
+{ 
+  $curl = curl_init();
+  
+  curl_setopt($curl, CURLOPT_URL, $url);
+  
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //1 bisa ditulis true
+  
+  $result = curl_exec($curl);
+  curl_close($curl);
+  
+  return json_decode($result, true); //array atau object, array = true
+}
 
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //1 bisa ditulis true
+$result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCZ97Wpe3uz9_xjEXEsv2zIw&key=AIzaSyA');
 
-$result = curl_exec($curl);
-curl_close($curl);
+// var_dump($result);
 
-$result = json_decode($result, true); //array atau object, array = true
-var_dump($result);
+$youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url'];
+$channelName = $result['items'][0]['snippet']['title'];
+$subscriber = $result['items'][0]['statistics']['subscriberCount'];
 
 ?>
 
@@ -95,11 +106,11 @@ var_dump($result);
           <div class="col-md-5">
             <div class="row">
               <div class="col-md-4">
-                <img src="img/profile1.png" width="200" class="rounded-circle img-thumbnail" alt="Youtube Profile">
+                <img src="<?= $youtubeProfilePic; ?>" width="200" class="rounded-circle img-thumbnail" alt="Youtube Profile">
               </div>
               <div class="col-md-8">
-                <h5>WebProgrammingUNPAS</h5>
-                <p>70000 Subscribers</p>
+                <h5><?= $channelName; ?></h5>
+                <p><?= $subscriber; ?> Subscribers</p>
               </div>
             </div>
             <div class="row mt-3 pb-3">
