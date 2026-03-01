@@ -22,6 +22,12 @@ $youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url
 $channelName = $result['items'][0]['snippet']['title'];
 $subscriber = $result['items'][0]['statistics']['subscriberCount'];
 
+// Latest video
+$urlLatestVideo = 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyA&channelId=UCZ97Wpe3uz9_xjEXEsv2zIw&maxResults=1&order=date';
+
+$result = get_CURL($urlLatestVideo);
+$latestVideoId = $result['items'][0]['id']['videoId'];
+
 ?>
 
 <!doctype html>
@@ -68,7 +74,7 @@ $subscriber = $result['items'][0]['statistics']['subscriberCount'];
       <div class="container">
         <div class="text-center">
           <img src="img/profile1.png" class="rounded-circle img-thumbnail">
-          <h1 class="display-4">Sandhika Galih</h1>
+          <h1 class="display-4">Codewithfz</h1>
           <h3 class="lead">Lecturer | Programmer | Youtuber</h3>
         </div>
       </div>
@@ -111,12 +117,13 @@ $subscriber = $result['items'][0]['statistics']['subscriberCount'];
               <div class="col-md-8">
                 <h5><?= $channelName; ?></h5>
                 <p><?= $subscriber; ?> Subscribers</p>
+                <div class="g-ytsubscribe" data-channelid="UCZ97Wpe3uz9_xjEXEsv2zIw" data-layout="default" data-count="default"></div>
               </div>
             </div>
             <div class="row mt-3 pb-3">
               <div class="col">
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $latestVideoId ?>?rel=0" allowfullscreen></iframe>
               </div>
               </div>
             </div>
@@ -298,5 +305,10 @@ $subscriber = $result['items'][0]['statistics']['subscriberCount'];
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- for subscribe button -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+
   </body>
 </html>
+
